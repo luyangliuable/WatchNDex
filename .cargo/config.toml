@@ -1,0 +1,4 @@
+[env]
+FOLDER_TO_WATCH = "/Users/blackfish/personal-portfolio/posts/"
+MONGO_URI = "mongodb://localhost:27017"
+DATABASE_NAME = "rustdb"
