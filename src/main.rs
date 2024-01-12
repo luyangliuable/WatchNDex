@@ -29,12 +29,9 @@ async fn main() {
 
     let database = DB.get().expect("Database has not been initialized.");
     println!("Connected to database: {}", database.name());
-
     let path = env!("FOLDER_TO_WATCH");
     println!("Watching {}", path);
-
-    let local_image_repo = LocalImageRepo(MongoRepo::<LocalImage>::init("images", &database).await);
-
+    let local_image_repo = LocalImageRepo(MongoRepo::<LocalImage>::init("LocalImage", &database).await);
     if let Err(e) = async_watch(path, local_image_repo).await {
         println!("Error: {:?}", e);
     }
