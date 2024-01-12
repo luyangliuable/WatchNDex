@@ -5,7 +5,6 @@ use mongodb::{
 };
 use mongodb::{Database, Collection};
 use futures::stream::StreamExt;
-use std::str::FromStr;
 use mongodb::results::UpdateResult;
 use mongodb::options::UpdateOptions;
 use crate::models::mongo_model::MongoModel;
@@ -33,10 +32,8 @@ impl<T: MongoModel> MongoRepo<T> {
         Ok(result)
     }
 
-    pub async fn update_one(&self, id: String, update: Document, options: Option<UpdateOptions>) -> Result<UpdateResult, Error> {
-        let filter = ObjectId::from_str(&id)
-            .map(|object_id| doc! {"_id": object_id})
-            .map_err(|_| Error::new(std::io::ErrorKind::Other, "Invalid user ID"))?;
+    pub async fn update_one(&self, id: ObjectId, update: Document, options: Option<UpdateOptions>) -> Result<UpdateResult, Error> {
+        let filter = doc! {"_id": id};
 
         let options = match options {
             Some(options) => options,

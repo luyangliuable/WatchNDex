@@ -38,19 +38,13 @@ pub struct LocalImage {
     #[serde(rename = "_id", skip_serializing_if = "Option::is_none")]
     pub id: Option<ObjectId>,
     pub image_type: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub year: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub month: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(with = "date_format")]
+    #[serde(with = "date_format", default)]
     pub date_created: Option<DateTime<Utc>>,
-    #[serde(with = "date_format")]
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(with = "date_format", default)]
     pub date_last_modified: Option<DateTime<Utc>>,
     pub file_name: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub source: Option<String>,
+    pub source: Option<String>
 }
