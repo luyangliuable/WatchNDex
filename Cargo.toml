@@ -10,6 +10,8 @@ serde = "1.0.188"
 futures = "0.3.28"
 tokio = {version = "1.32.0", features = ["full"]}
 watch = "0.2.3"
+async-trait = "0.1.77"
+toml = "0.5"
 notify = "6.1.1"
 regex = "1.10.2"
 lazy_static = "1.4.0"
